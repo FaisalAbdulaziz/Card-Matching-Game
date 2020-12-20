@@ -14,6 +14,11 @@ const flip = function(){
             $(secondCard).unbind()
         }else{
             console.log("oooooooooooo")
+            setTimeout(() => {
+                firstCard.classList.toggle('flip');
+                secondCard.classList.toggle('flip');
+            },1000)
+            
         }
     }else{
         active=true;
