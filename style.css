@@ -41,10 +41,6 @@ h1{
     width: 125px;
 }
 
-.card.flip{
-    transform: rotateY(180deg);
-}
-
 .card-back{
     background-color: white;
     position: absolute;
@@ -67,15 +63,15 @@ h1{
     justify-content: center;
     align-items: center;
     transform: perspective(1000px) rotateY(180deg);
-    transition: transform .5s;
+    transition: transform 0.9s;
     backface-visibility: hidden;
 }
 
-.card:hover .card-back{
+.card.flip .card-back{
     transform: perspective(1000px) rotateY(-180deg);
 }
 
-.card:hover .card-face{
+.card.flip .card-face{
     transform: perspective(1000px) rotateY(0deg);
 }
 
