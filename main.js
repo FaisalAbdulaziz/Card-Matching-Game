@@ -1,10 +1,16 @@
 let active = false;
+let opened = false;
 let firstCard;
 let secondCard;
+let temp;
 let cards = $('.card');
 const flip = function(){
-    this.classList.toggle('flip');
+    if (temp === this && opened){
+
+    }else{
+        this.classList.toggle('flip');
     if(active){
+        opened=true;
         secondCard = this;
         active=false;
         console.log('sec',secondCard, active)
@@ -13,6 +19,7 @@ const flip = function(){
             $(firstCard).unbind()
             $(secondCard).unbind()
         }else{
+            opened=false;
             console.log("oooooooooooo")
             setTimeout(() => {
                 firstCard.classList.toggle('flip');
@@ -20,11 +27,17 @@ const flip = function(){
             },1000)
             
         }
+        console.log(opened)
     }else{
+        opened=true;
         active=true;
         firstCard=this;
+        temp = firstCard;
         console.log('f',firstCard ,active)
+        console.log(opened)
     }
+    }
+    
     
 
 }
