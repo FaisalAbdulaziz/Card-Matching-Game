@@ -1,3 +1,6 @@
+html{
+    min-height: 100%;
+}
 *{
     box-sizing: border-box;
 }
@@ -18,7 +21,7 @@ h1{
 }
 
 .info-container{
-    grid-column: 1/5;
+    grid-column: 1/-1;
     display: flex;
     justify-content: center;
 }
@@ -28,8 +31,7 @@ h1{
     grid-template-columns: repeat(4,auto);
     grid-gap:10px;
     margin: 50px;
-    justify-content: center;
-    
+    justify-content: center;    
 }
 
 .card{
@@ -37,6 +39,10 @@ h1{
     background-color: white;
     height: 175px;
     width: 125px;
+}
+
+.card.flip{
+    transform: rotateY(180deg);
 }
 
 .card-back{
@@ -47,6 +53,9 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: perspective(1000px) rotateY(0deg);
+    transition: transform .5s;
+    backface-visibility: hidden;
 }
 
 .card-face{
@@ -57,6 +66,17 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: perspective(1000px) rotateY(180deg);
+    transition: transform .5s;
+    backface-visibility: hidden;
+}
+
+.card:hover .card-back{
+    transform: perspective(1000px) rotateY(-180deg);
+}
+
+.card:hover .card-face{
+    transform: perspective(1000px) rotateY(0deg);
 }
 
 img{
