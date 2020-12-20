@@ -8,7 +8,7 @@ const flip = function(){
         secondCard = this;
         active=false;
         console.log('sec',secondCard, active)
-        if(($(firstCard).find("img")[0].src) === ($(secondCard).find("img")[0].src)){
+        if((($(firstCard).find("img")[0].src) === ($(secondCard).find("img")[0].src) )&&(firstCard !== secondCard)){
             console.log("kjkjkjkjjkjkjkjk")
             $(firstCard).unbind()
             $(secondCard).unbind()
