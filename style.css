@@ -1,0 +1,66 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    color: white;
+    background: radial-gradient(blue,black);
+}
+
+h1{
+    font-weight: normal;
+    text-align: center;
+    font-size: 5em
+}
+
+.game-info{
+    font-size: 3em;
+}
+
+.info-container{
+    grid-column: 1/5;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container{
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-gap:10px;
+    margin: 50px;
+    justify-content: center;
+    
+}
+
+.card{
+    position: relative;
+    background-color: white;
+    height: 175px;
+    width: 125px;
+}
+
+.card-back{
+    background-color: white;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-face{
+    background-color: yellow;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
