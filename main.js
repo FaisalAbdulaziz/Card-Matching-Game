@@ -2,7 +2,7 @@ let active = false;
 let opened = false;
 let firstCard;
 let secondCard;
-let audioWrong = new Audio('Audio/roblox-death-sound-effect.mp3');
+let audioWrong = new Audio('Audio/');
 audioWrong.volume=0.3;
 let audioTime = new Audio('Audio/roblox-death-sound-effect.mp3');
 audioTime.volume=0.3;
@@ -54,6 +54,7 @@ const flip = function(){
             setTimeout(() => {
                 firstCard.classList.toggle('flip');
                 secondCard.classList.toggle('flip');
+                audioFlip.play();
             },1000)
             
         }
