@@ -13,6 +13,7 @@ audioCorrect.volume=0.2;
 let backgroundAudio= new Audio('Audio/bgmusic.mp3');
 backgroundAudio.volume=0.035;
 let cards = $('.card');
+let play = $('.start');
 let streaks = $('#streak-count');
 let streak=0;
 let timer = 100;
@@ -23,9 +24,9 @@ let progCount=$('#prog-count');
 
 
 
-
 const flip = function(){
     backgroundAudio.play();
+    backgroundAudio.loop=true;
     
     if (firstCard === this && opened){
         
@@ -47,6 +48,7 @@ const flip = function(){
             streaks[0].innerHTML = streak
         }else{
             audioWrong.play();
+            audioFlip.play();
             streak=0;
             streaks[0].innerHTML = streak
             opened=false;
@@ -79,8 +81,8 @@ const flip = function(){
 console.log(streak);
 console.log(progCount[0]);
 }
-cards.on("click",flip)
 
+cards.on("click",flip)
 
 
 

@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Cards Game</title>
 </head>
 <body>
-    
+    <h1>Card Matching Game</h1>
+<div class="main">
+    <div onclick="toGame()" class="button start">1 Player</div>
+    <div data-hover="Coming soon" class="button notYet">2 Player</div>
+    <div data-hover="Coming soon" class="button notYet">AI</div>
+</div>
+
+<script>
+    function toGame() {
+        location.replace("index.html")
+    }
+    </script>
 </body>
 </html>
