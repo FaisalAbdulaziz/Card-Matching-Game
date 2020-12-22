@@ -21,9 +21,50 @@ let timeCount = $('#time-count');
 let prog = $('.meter > span')
 let correct=0;
 let progCount=$('#prog-count');
+let cardFace=$('.card-face > img');
+let randomArrNum=[];
+let arrCards=[
+            'https://quizswish.com/wp-content/uploads/2020/06/LD.jpg',
+            'https://quizswish.com/wp-content/uploads/2020/06/LD.jpg',
+            'https://static.hollywoodreporter.com/sites/default/files/2015/06/johnny_depp_dior.jpg',
+            'https://static.hollywoodreporter.com/sites/default/files/2015/06/johnny_depp_dior.jpg',
+            'https://i.pinimg.com/originals/fe/ec/27/feec279250552054d2c48edea1896798.jpg',
+            'https://i.pinimg.com/originals/fe/ec/27/feec279250552054d2c48edea1896798.jpg',
+            'https://www.mordeo.org/files/uploads/2016/09/Keanu-Reeves-From-John-Wick-Chapter-2-Mobile-Wallpaper.jpg',
+            'https://www.mordeo.org/files/uploads/2016/09/Keanu-Reeves-From-John-Wick-Chapter-2-Mobile-Wallpaper.jpg',
+            'https://m.media-amazon.com/images/M/MV5BMTg0MDc3ODUwOV5BMl5BanBnXkFtZTcwMTk2NjY4Nw@@._V1_.jpg',
+            'https://m.media-amazon.com/images/M/MV5BMTg0MDc3ODUwOV5BMl5BanBnXkFtZTcwMTk2NjY4Nw@@._V1_.jpg',
+            'https://www.denofgeek.com/wp-content/uploads/2019/11/star-wars-the-mandalorian-baby-yoda.png?fit=1401%2C734',
+            'https://www.denofgeek.com/wp-content/uploads/2019/11/star-wars-the-mandalorian-baby-yoda.png?fit=1401%2C734',
+            'https://static.wikia.nocookie.net/starwars/images/d/d6/Yoda_SWSB.png/revision/latest/top-crop/width/360/height/450?cb=20150206140125',
+            'https://static.wikia.nocookie.net/starwars/images/d/d6/Yoda_SWSB.png/revision/latest/top-crop/width/360/height/450?cb=20150206140125',
+            'https://i.pinimg.com/originals/c1/27/f3/c127f31130e49eb606ebf9a9be204c4c.jpg',
+            'https://i.pinimg.com/originals/c1/27/f3/c127f31130e49eb606ebf9a9be204c4c.jpg',
+            ];
 
 
+console.log(randomArrNum)
+const getRandom = function(){
+    let random = Math.floor(Math.random() * cardFace.length)
+    console.log(random)
+        console.log('before')
+    
+    while(randomArrNum.includes(random)){
+        console.log(random)
+        console.log('random1')
+        random = Math.floor(Math.random() * cardFace.length)
+        console.log(random)
+        console.log('random2')
+    }
+    randomArrNum.push(random)
+        return random
+}
 
+            //cardFace=cardFace[1]
+            for (let i = 0; i < arrCards.length; i++) {
+                console.log($(cardFace[getRandom()]).attr('src',arrCards[i]))
+            }
+//console.log(cardFace.attr('src','jjjjjjjjj'))
 const flip = function(){
     backgroundAudio.play();
     backgroundAudio.loop=true;
@@ -73,7 +114,11 @@ const flip = function(){
     }
     setTimeout(() => {
         if(correct === cards.length/2){
-        alert('Good job, You did it!')
+            if(confirm("Good job, You did it! \nWanna play again!")){
+                randomArrNum=[];
+                location.reload();
+                }else
+                Redirect();
         clearInterval(inter);
         }
     },500)
@@ -84,8 +129,9 @@ console.log(progCount[0]);
 
 cards.on("click",flip)
 
-
-
+function Redirect() {
+    window.location.href = "main.html";
+}
 let inter = setInterval(function(){
     if(timer ===0){
     clearInterval(inter);
@@ -96,8 +142,11 @@ let inter = setInterval(function(){
     timer--
 }, 1000);
 setInterval(function(){
-    confirm("Oops, time's out!")
-    location.reload();
+    if(confirm("Oops, time's out! \nWanna play again!")){
+        randomArrNum=[];
+        location.reload();
+    }else
+    Redirect();
 }, 102000);
 
 
