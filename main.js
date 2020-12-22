@@ -1,30 +1,31 @@
-let active = false;
-let opened = false;
-let started = true;
-let allow = true;
-let firstCard;
-let secondCard;
-let audioWrong = new Audio('Audio/');
-audioWrong.volume=0.3;
-let audioTime = new Audio('Audio/roblox-death-sound-effect.mp3');
-audioTime.volume=0.3;
-var audioFlip = new Audio('Audio/Card-flip-sound-effect.mp3');
-audioFlip.volume=0.2;
-var audioCorrect = new Audio('Audio/CorrectA.mp3');
-audioCorrect.volume=0.2;
-let backgroundAudio= new Audio('Audio/bgmusic.mp3');
-backgroundAudio.volume=0.035;
-let cards = $('.card');
-let play = $('.start');
-let streaks = $('#streak-count');
-let streak=0;
-let timer = 100;
-let timeCount = $('#time-count');
-let prog = $('.meter > span')
-let correct=0;
-let progCount=$('#prog-count');
-let cardFace=$('.card-face > img');
-let randomArrNum=[];
+let active = false;// to know which card is selected
+let opened = false;// this will allow me to select the same card after flip it back when get the wrong match
+let started = true;// To show all cards for 1.5sec just when the game starts
+let allow = true;// it wont allow u to make an action if it was false
+let firstCard;// first card clicked
+let secondCard;// second card clicked
+let audioWrong = new Audio('Audio/');// Audio
+audioWrong.volume=0.3;// Change Audio volume
+let audioTime = new Audio('Audio/roblox-death-sound-effect.mp3');// Audio
+audioTime.volume=0.3;// Change Audio volume
+var audioFlip = new Audio('Audio/Card-flip-sound-effect.mp3');// Audio
+audioFlip.volume=0.2;// Change Audio volume
+var audioCorrect = new Audio('Audio/CorrectA.mp3');// Audio
+audioCorrect.volume=0.2;// Change Audio volume
+let backgroundAudio= new Audio('Audio/bgmusic.mp3');// Audio
+backgroundAudio.volume=0.035;// Change Audio volume
+let cards = $('.card');// selector contain all cards
+let streaks = $('#streak-count');// selector
+let streak=0;// count how many correct matching cards without getting one wrong
+let timer = 100;// max time for the game
+let timeCount = $('#time-count');// time selector
+let prog = $('.meter > span')// selector
+let correct=0; // counting the correct match
+let progCount=$('#prog-count'); // to trace the progress
+let cardFace=$('.card-face > img'); // selector
+let randomArrNum=[]; // array contain numbers from math.random method to avoid overwrite the same card
+
+// array contain all the images
 let arrCards=[
             'https://quizswish.com/wp-content/uploads/2020/06/LD.jpg',
             'https://quizswish.com/wp-content/uploads/2020/06/LD.jpg',
@@ -38,35 +39,29 @@ let arrCards=[
             'https://m.media-amazon.com/images/M/MV5BMTg0MDc3ODUwOV5BMl5BanBnXkFtZTcwMTk2NjY4Nw@@._V1_.jpg',
             'https://www.denofgeek.com/wp-content/uploads/2019/11/star-wars-the-mandalorian-baby-yoda.png?fit=1401%2C734',
             'https://www.denofgeek.com/wp-content/uploads/2019/11/star-wars-the-mandalorian-baby-yoda.png?fit=1401%2C734',
-            'https://static.wikia.nocookie.net/starwars/images/d/d6/Yoda_SWSB.png/revision/latest/top-crop/width/360/height/450?cb=20150206140125',
-            'https://static.wikia.nocookie.net/starwars/images/d/d6/Yoda_SWSB.png/revision/latest/top-crop/width/360/height/450?cb=20150206140125',
+            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/baby-yoda-old-yoda-1574103229.jpg?crop=0.486xw:0.973xh;0.514xw,0&resize=480:*',
+            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/baby-yoda-old-yoda-1574103229.jpg?crop=0.486xw:0.973xh;0.514xw,0&resize=480:*',
             'https://i.pinimg.com/originals/c1/27/f3/c127f31130e49eb606ebf9a9be204c4c.jpg',
             'https://i.pinimg.com/originals/c1/27/f3/c127f31130e49eb606ebf9a9be204c4c.jpg',
             ];
 
-
-console.log(randomArrNum)
+/* this method will return a random number that did not got selected before */
 const getRandom = function(){
     let random = Math.floor(Math.random() * cardFace.length)
-    console.log(random)
-        console.log('before')
     
     while(randomArrNum.includes(random)){
-        console.log(random)
-        console.log('random1')
         random = Math.floor(Math.random() * cardFace.length)
-        console.log(random)
-        console.log('random2')
     }
     randomArrNum.push(random)
         return random
 }
 
-            //cardFace=cardFace[1]
-            for (let i = 0; i < arrCards.length; i++) {
-                console.log($(cardFace[getRandom()]).attr('src',arrCards[i]))
-            }
-//console.log(cardFace.attr('src','jjjjjjjjj'))
+/* this for loop will call the randomize method and will change the img of the card */
+for (let i = 0; i < arrCards.length; i++) {
+    $(cardFace[getRandom()]).attr('src',arrCards[i])
+}
+
+/* main flip method */
 const flip = function(){
     backgroundAudio.play();
     backgroundAudio.loop=true;
@@ -80,10 +75,8 @@ const flip = function(){
             opened=true;
             secondCard = this;
             active=false;
-            console.log('sec',secondCard, active)
             if((($(firstCard).find("img")[0].src) === ($(secondCard).find("img")[0].src) )&&(firstCard !== secondCard)){
                 audioCorrect.play();
-                console.log("kjkjkjkjjkjkjkjk")
                 $(firstCard).unbind()
                 $(secondCard).unbind()
                 correct++;
@@ -96,7 +89,6 @@ const flip = function(){
                 streak=0;
                 streaks[0].innerHTML = streak
                 opened=false;
-                console.log("oooooooooooo")
                 setTimeout(() => {
                     firstCard.classList.toggle('flip');
                     secondCard.classList.toggle('flip');
@@ -107,13 +99,10 @@ const flip = function(){
             }
             progCount[0].innerHTML=(((correct/(cards.length/2))*100)+'%')
             prog.css( "width",((correct/(cards.length/2))*100)+'%' )
-            console.log(opened)
         }else{
             opened=true;
             active=true;
             firstCard=this;
-            console.log('f',firstCard ,active)
-            console.log(opened)
         }
         }
     }else{
@@ -132,42 +121,46 @@ const flip = function(){
         clearInterval(inter);
         }
     },500)
-    
-console.log(streak);
-console.log(progCount[0]);
 }
-console.log('jjjjjjjjjjjjjjjjjj',cards);
+
+
 if(started){
-console.log('ooiiiiiiiiiiooooooo',(cards).addClass('flip'))
-let str = setInterval(function(){
+    allow=false;
+    (cards).addClass('flip')
+    let str = setInterval(function(){
     (cards).removeClass('flip')
     clearInterval(str);
+    allow=true;
 }, 1500);
 
 started=false;
 }
-console.log('hhhhhhhhhhhhhhhhhhhhhhhhh',cards);
-cards.on("click",flip)
 
+
+cards.on("click",flip)// flip the card when clicked
+
+
+/* redirect to main page when call it */
 function Redirect() {
     window.location.href = "main.html";
 }
+
+/* count down the seconds and stop when reach zero */
 let inter = setInterval(function(){
-    if(timer ===0){
+    if(timer < 0){
     clearInterval(inter);
     audioTime.play();
+    if(confirm("Oops, time's out! \nWanna play again!")){
+        //randomArrNum=[];
+        location.reload();
+    }else
+    Redirect();
     }
 
     timeCount[0].innerHTML=timer;
     timer--
 }, 1000);
-setInterval(function(){
-    if(confirm("Oops, time's out! \nWanna play again!")){
-        randomArrNum=[];
-        location.reload();
-    }else
-    Redirect();
-}, 102000); 
+
 
 
 
