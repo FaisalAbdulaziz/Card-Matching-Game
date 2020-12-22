@@ -1,5 +1,6 @@
 let active = false;
 let opened = false;
+let started = true;
 let firstCard;
 let secondCard;
 let audioWrong = new Audio('Audio/');
@@ -126,7 +127,17 @@ const flip = function(){
 console.log(streak);
 console.log(progCount[0]);
 }
+console.log('jjjjjjjjjjjjjjjjjj',cards);
+if(started){
+console.log('ooiiiiiiiiiiooooooo',(cards).addClass('flip'))
+let str = setInterval(function(){
+    (cards).removeClass('flip')
+    clearInterval(str);
+}, 1500);
 
+started=false;
+}
+console.log('hhhhhhhhhhhhhhhhhhhhhhhhh',cards);
 cards.on("click",flip)
 
 function Redirect() {
