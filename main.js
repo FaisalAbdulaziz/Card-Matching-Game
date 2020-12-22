@@ -167,7 +167,7 @@ setInterval(function(){
         location.reload();
     }else
     Redirect();
-}, 102000);
+}, 102000); 
 
 
 
