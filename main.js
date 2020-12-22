@@ -1,6 +1,7 @@
 let active = false;
 let opened = false;
 let started = true;
+let allow = true;
 let firstCard;
 let secondCard;
 let audioWrong = new Audio('Audio/');
@@ -69,50 +70,58 @@ const getRandom = function(){
 const flip = function(){
     backgroundAudio.play();
     backgroundAudio.loop=true;
-    
-    if (firstCard === this && opened){
+    if(allow){
+        if (firstCard === this && opened){
         
-    }else{
-        audioFlip.play();
-        this.classList.toggle('flip');
-    if(active){
-        opened=true;
-        secondCard = this;
-        active=false;
-        console.log('sec',secondCard, active)
-        if((($(firstCard).find("img")[0].src) === ($(secondCard).find("img")[0].src) )&&(firstCard !== secondCard)){
-            audioCorrect.play();
-            console.log("kjkjkjkjjkjkjkjk")
-            $(firstCard).unbind()
-            $(secondCard).unbind()
-            correct++;
-            streak++;
-            streaks[0].innerHTML = streak
         }else{
-            audioWrong.play();
             audioFlip.play();
-            streak=0;
-            streaks[0].innerHTML = streak
-            opened=false;
-            console.log("oooooooooooo")
-            setTimeout(() => {
-                firstCard.classList.toggle('flip');
-                secondCard.classList.toggle('flip');
+            this.classList.toggle('flip');
+        if(active){
+            opened=true;
+            secondCard = this;
+            active=false;
+            console.log('sec',secondCard, active)
+            if((($(firstCard).find("img")[0].src) === ($(secondCard).find("img")[0].src) )&&(firstCard !== secondCard)){
+                audioCorrect.play();
+                console.log("kjkjkjkjjkjkjkjk")
+                $(firstCard).unbind()
+                $(secondCard).unbind()
+                correct++;
+                streak++;
+                streaks[0].innerHTML = streak
+            }else{
+                allow=false;
+                audioWrong.play();
                 audioFlip.play();
-            },1000)
-            
+                streak=0;
+                streaks[0].innerHTML = streak
+                opened=false;
+                console.log("oooooooooooo")
+                setTimeout(() => {
+                    firstCard.classList.toggle('flip');
+                    secondCard.classList.toggle('flip');
+                    audioFlip.play();
+                    allow=true;
+                },1000)
+                
+            }
+            progCount[0].innerHTML=(((correct/(cards.length/2))*100)+'%')
+            prog.css( "width",((correct/(cards.length/2))*100)+'%' )
+            console.log(opened)
+        }else{
+            opened=true;
+            active=true;
+            firstCard=this;
+            console.log('f',firstCard ,active)
+            console.log(opened)
         }
-        progCount[0].innerHTML=(((correct/(cards.length/2))*100)+'%')
-        prog.css( "width",((correct/(cards.length/2))*100)+'%' )
-        console.log(opened)
+        }
     }else{
-        opened=true;
-        active=true;
-        firstCard=this;
-        console.log('f',firstCard ,active)
-        console.log(opened)
+
     }
-    }
+
+
+    
     setTimeout(() => {
         if(correct === cards.length/2){
             if(confirm("Good job, You did it! \nWanna play again!")){
