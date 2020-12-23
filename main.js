@@ -168,10 +168,13 @@ let inter = setInterval(function(){
 
 
 function toGame() {
-    location.replace("index.html")
+    location.replace("main.html")
 }
 function to1v1() {
     location.replace("twoPlayer.html")
+}
+function toAI() {
+    location.replace("AI.html")
 }
 
 

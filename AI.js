@@ -50,21 +50,26 @@ let arrCards=[
 
 
 
+let flipedCard =[];
+
+
+
+
 let playerOne = 0;
 let playerTwo = 0;
 let playerT = $('#player-turn');
-let playerTurn = 1;
+let playerTurn = "You";
 const turn = function(){
-    if(playerTurn === 1){
-        playerTurn = 2;
+    if(playerTurn === "You"){
+        playerTurn = "AI";
     }else{
-        playerTurn = 1;
+        playerTurn = "You";
     }
     playerT[0].innerHTML = playerTurn
 }
 
 const score = function(){
-    if(playerTurn === 1){
+    if(playerTurn === "You"){
         playerOne++;
     }else{
         playerTwo++;
@@ -88,9 +93,19 @@ const getRandom = function(){
 for (let i = 0; i < arrCards.length; i++) {
     $(cardFace[getRandom()]).attr('src',arrCards[i])
 }
-
+let rr = 0
 /* main flip method */
 const flip = function(){
+    if(playerTurn === "AI" && rr===0){
+    console.log("KJKJKJKJ",flipedCard = cards[Math.floor(Math.random() *16)])
+    rr++
+    }
+    if(playerTurn === "AI" && rr===1){
+        console.log("KJKJKJKJ",secondCard = cards[Math.floor(Math.random() *16)])
+        rr--
+        }
+    //flipedCard.push(this)
+    console.log("55555555",flipedCard)
     backgroundAudio.play();
     backgroundAudio.loop=true;
     if(allow){
@@ -104,6 +119,9 @@ const flip = function(){
             secondCard = this;
             active=false;
             if((($(firstCard).find("img")[0].src) === ($(secondCard).find("img")[0].src) )&&(firstCard !== secondCard)){
+                flipedCard.push(firstCard)
+                flipedCard.push(secondCard)
+                console.log("999999990000000",flipedCard)
                 audioCorrect.play();
                 $(firstCard).unbind()
                 $(secondCard).unbind()
@@ -193,6 +211,14 @@ started=false;
 }
 
 
+/*setInterval(function(){
+    if(playerTurn === "AI"){
+        cards[5].flip()
+    }
+}, 1500);*/
+
+console.log("pppppppppppppppppppppppp",cards)
+console.log("wwwwwwwwwwwwwwwwwwwwww",flipedCard)
 cards.on("click",flip)// flip the card when clicked
 
 
