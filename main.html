@@ -11,14 +11,14 @@
     <h1>Card Matching Game</h1>
 <div class="main">
     <div onclick="toGame()" class="button start">1 Player</div>
-    <div data-hover="Coming soon" class="button notYet">2 Player</div>
+    <div onclick="to1v1()" class="button">2 Player</div>
     <div data-hover="Coming soon" class="button notYet">AI</div>
 </div>
 
-<script>
-    function toGame() {
-        location.replace("index.html")
-    }
-    </script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="twoplayer.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

@@ -18,8 +18,8 @@ let backgroundAudio= new Audio('Audio/bgmusic.mp3');// Audio
 backgroundAudio.volume=0.035;// Change Audio volume
 
 let cards = $('.card');// selector contain all cards
-let streaks = $('#streak-count');// selector
-let streak=0;// count how many correct matching cards without getting one wrong
+//let streaks = $('#streak-count');// selector
+//let streak=0;// count how many correct matching cards without getting one wrong
 let timer = 100;// max time for the game
 let timeCount = $('#time-count');// time selector
 let prog = $('.meter > span')// selector
@@ -48,6 +48,30 @@ let arrCards=[
             'https://i.pinimg.com/originals/c1/27/f3/c127f31130e49eb606ebf9a9be204c4c.jpg',
             ];
 
+
+
+let playerOne = 0;
+let playerTwo = 0;
+let playerT = $('#player-turn');
+let playerTurn = 1;
+const turn = function(){
+    if(playerTurn === 1){
+        playerTurn = 2;
+    }else{
+        playerTurn = 1;
+    }
+    playerT[0].innerHTML = playerTurn
+}
+
+const score = function(){
+    if(playerTurn === 1){
+        playerOne++;
+    }else{
+        playerTwo++;
+    }
+}
+
+playerT[0].innerHTML = playerTurn
 
 /* this method will return a random number that did not got selected before */
 const getRandom = function(){
@@ -84,15 +108,17 @@ const flip = function(){
                 $(firstCard).unbind()
                 $(secondCard).unbind()
                 correct++;
-                streak++;
-                streaks[0].innerHTML = streak
+                score();
+                //streak++;
+                //streaks[0].innerHTML = streak
             }else{
                 allow=false;
                 audioWrong.play();
                 audioFlip.play();
-                streak=0;
-                streaks[0].innerHTML = streak
+                //streak=0;
+                //streaks[0].innerHTML = streak
                 opened=false;
+                turn();
                 setTimeout(() => {
                     firstCard.classList.toggle('flip');
                     secondCard.classList.toggle('flip');
@@ -114,7 +140,33 @@ const flip = function(){
     }
 
 
-    
+    setTimeout(() => {
+        if(correct === cards.length/2){
+        if(playerOne > playerTwo){
+            if(confirm("Player 1 Won \n \nWanna play again!")){
+                randomArrNum=[];
+                location.reload();
+                }else
+                Redirect();
+        clearInterval(inter);
+        }else if(playerTwo > playerOne){
+            if(confirm("Player 2 Won \n \nWanna play again!")){
+                randomArrNum=[];
+                location.reload();
+                }else
+                Redirect();
+        }else{
+            if(confirm("Wow It a draw \n \nWanna play again!")){
+                randomArrNum=[];
+                location.reload();
+                }else
+                Redirect();
+        }
+    }
+    },500)
+
+
+    /*
     setTimeout(() => {
         if(correct === cards.length/2){
             if(confirm("Good job, You did it! \nWanna play again!")){
@@ -124,7 +176,7 @@ const flip = function(){
                 Redirect();
         clearInterval(inter);
         }
-    },500)
+    },500)*/
 }
 
 
@@ -167,12 +219,13 @@ let inter = setInterval(function(){
 
 
 
+
+
+
+
 function toGame() {
     location.replace("index.html")
 }
 function to1v1() {
     location.replace("twoPlayer.html")
 }
-
-
-
