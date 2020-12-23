@@ -198,7 +198,7 @@ cards.on("click",flip)// flip the card when clicked
 
 /* redirect to main page when call it */
 function Redirect() {
-    window.location.href = "main.html";
+    window.location.href = "index.html";
 }
 
 /* count down the seconds and stop when reach zero */
