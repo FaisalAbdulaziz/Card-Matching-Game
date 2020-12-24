@@ -60,8 +60,8 @@ All application components are usable across modern desktop, tablet, and phone b
 
 # Special thanks:
 
-Many many thanks to:\
+Many many thanks to: JRJS\
 [Mohammad Jouza](https://git.generalassemb.ly/MohammadJouza)\
-[raymond](https://git.generalassemb.ly/raymond)\
-[sameh kinawy](https://git.generalassemb.ly/samehkinawy)\
-[jaber alsalamah](https://git.generalassemb.ly/jaberalsalamah)
+[Raymond](https://git.generalassemb.ly/raymond)\
+[Jaber alsalamah](https://git.generalassemb.ly/jaberalsalamah)\
+[Sameh kinawy](https://git.generalassemb.ly/samehkinawy)
