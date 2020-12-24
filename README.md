@@ -22,7 +22,7 @@ The player is provided of 16 cards on the table (8 couples of 2 identic cards). 
 7. You can then choose to play again or exit the game.
 <br><br>
 <img src="./src/mainPage.png" alt="drawing" height="700" width="500"/>
-<img src="./src/cardPage.png" alt="drawing" height="700" width="400"/>
+<img src="./src/cardPage.png" alt="drawing" height="700" width="500"/>
 
 <br><br><br>
 # Play
