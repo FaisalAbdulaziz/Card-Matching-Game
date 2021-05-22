@@ -55,13 +55,3 @@ Add Audio and sound effect.
 ## Run the game Requirement:
 
 All application components are usable across modern desktop, tablet, and phone browsers.
-
-<br><br><br>
-
-# Special thanks:
-
-Many many thanks to: JRJS\
-[Mohammad Jouza](https://git.generalassemb.ly/MohammadJouza)\
-[Raymond](https://git.generalassemb.ly/raymond)\
-[Jaber alsalamah](https://git.generalassemb.ly/jaberalsalamah)\
-[Sameh kinawy](https://git.generalassemb.ly/samehkinawy)
